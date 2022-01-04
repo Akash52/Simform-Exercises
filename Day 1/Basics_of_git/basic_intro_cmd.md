@@ -14,17 +14,25 @@
 
 ## Basic Command
 
+![alt text](https://rubygarage.s3.amazonaws.com/uploads/article_image/file/600/git-cheatsheet-6.jpg)
+
+### When you create fisrt time repository
+
 ```
-# First commit
-[bash]$ git add sort.c
-
-# adds file to the staging area
-[bash]$ git commit –m “Added sort operation”
-
-# Second commit
-[bash]$ git add search.c
-
-# adds file to the staging area
-[bash]$ git commit –m “Added search operation”
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Akash52/cgff.git
+git push -u origin main
 ```
+### When you work with existing Repository
+
+```
+git add .
+git commit -m "first commit"
+git push -u origin main
+```
+
+
 
