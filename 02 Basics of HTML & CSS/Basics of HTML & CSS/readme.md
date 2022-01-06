@@ -19,3 +19,5 @@
 
 - Native support (no plugin)
 - Rich API
+
+[MDN HTML ELEMENT REFERENCE](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
