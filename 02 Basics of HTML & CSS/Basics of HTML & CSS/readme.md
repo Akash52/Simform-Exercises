@@ -14,3 +14,8 @@
 - New Element Types
 - Native Validation
 - Custom validation
+
+### Music & Video
+
+- Native support (no plugin)
+- Rich API
