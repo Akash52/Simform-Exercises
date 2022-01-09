@@ -1,13 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
-body{
-    font-family: 'Lato', sans-serif;
+*{
+    
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
+html{
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
 /* Navigation CSS START */
 
 nav{
@@ -45,10 +48,9 @@ nav{
 }
 
 img,a{
+    display: inline-block;
     width: 75px;
     text-decoration: none;
-    outline: none;
-    border: none;
     color: #fff; 
 }
 
@@ -56,9 +58,11 @@ img,a{
     color: #ffe500;
     font-weight: 500;
     margin: 0px 2px;
+    width: fit-content;
 }
 
 .plus-img{
+    display: inline-block;
     width: 10px;
     margin-bottom: 1px;
 }
@@ -99,8 +103,6 @@ input:hover{
 }
 
 .login-btn {
-    align-items: center;
-    justify-content: center;
     font-size: large;
     position: relative;
     left: 80px;
@@ -113,11 +115,13 @@ input:hover{
     border-radius: 2px;
     height: 36px;
     letter-spacing: 1px;
-    transition: 0.5s ease-in-out;
+    transition: .3s ease;
+    transition-property:background-color,color ;
 }
 
 .login-btn:hover{
-    background-color: #fafafa;
+    color: white;
+    background-color: transparent;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -143,20 +147,6 @@ input:hover{
     color: #fafafa;
 }
 
-.svg-category{
-
-    width: 15px;
-    height: 15px;
-    align-items: center;
-    margin-top: 5px;
-    color: #1111;
-
-}
-
-.fas {
-    margin-right: 4px;
-}
-
 /* Navigation CSS END */
 
 
@@ -168,10 +158,8 @@ input:hover{
     padding-top: 70px;
     padding-bottom: 10px;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
-
     margin: 0 auto;
     z-index: 6;
-    position: relative;
     justify-content: space-evenly;
 }
 
@@ -179,7 +167,6 @@ input:hover{
     padding: 12px 8px;
     text-align: center;
     cursor: pointer;
-   
 }
 .product-text{
     font-weight: 600;
