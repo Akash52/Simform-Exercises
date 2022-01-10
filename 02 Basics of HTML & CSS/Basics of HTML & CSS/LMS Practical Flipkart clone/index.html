@@ -4,98 +4,106 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipkart</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-<!-- Header -->
-<header>
-    <!-- Navigation Bar -->
-<nav>
-<div class="container flex">
-    <!-- LOGO -->
-    <div class="container-items">
-        <a href="/">
-            <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="img" >
-        </a>
-        <a class="flex bottom-border"" href="/plus">Explore <span class="plus-text">Plus</span><img class="plus-img" src="/src/images/plus.png"></a> 
-    </div>
-    <!-- SEARCH BAR -->
-    <div class="container-search">
-        <input class="input-search" type="text" placeholder="Search for products, brands and more">
-        <button class="search-btn"><i class="fa fa-search"></i></button> 
-    </div>
+    <header>
+            <nav class="nav-container">
+            <ul class="logo-text">
+                <li><a href="/"><img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="img" ></a></li>
+                <li><a class="link" href="/">Explore<span class="plus-text">Plus</span></a></li>
+            </ul>
+            <ul class="input-search">
+                <li> <input class="input-search" type="text" placeholder="Search for products, brands and more">
+                   </li>
+                <li> <button class="search-btn"><i class="fa fa-search"></i></button> </li>
+            </ul>
+            <ul class="button-style">
+                <li><a>Login</a></li>
+                <li><a>More<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="svg-arrow"  viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></a></li>
+                <li><a><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            </ul>
+        </nav>
 
-    <!-- Login Button -->
+        <section class="header-container">
+            <div class="card">
+                <img  src="/src/images/f15c02bfeb02d15d.png" alt="" >
+                <div class="product-text">Top Offers</div>
+            </div>
+            <div class="card">
+                <img  src="/src/images/29327f40e9c4d26b.png" alt="" >
+                <div class="product-text" >Grocery</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/22fddf3c7da4c4f4.png" alt="" >
+                <div class="product-text" >Mobiles</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/fashion.png" alt="" >
+                <div class="product-text" >Fashion </div> 
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/laptop.png" alt="" >
+                <div class="product-text" >Electronics</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/Home.jpg" alt="" >
+                <div class="product-text" >Home</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/Appliences.png" alt="" >
+                <div class="product-text" >Appliances</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="src/images/travel.png" alt="" >
+                <div class="product-text" >Travel</div>
+            </div>
+            <div class="card">
+                <img class="img-class" src="/src/images/Toys.png" alt="" >
+                <div class="product-text" >Beauty, Toys & More </div>
+            </div>
+        </section>
 
-    <button class="login-btn">Login</button>
- 
-    <!-- More Link -->
+    </header>
 
-    <a class="more-btn flex">More
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="svg-arrow"  viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </a>
+    <main>
+        <div class="main-section">
+            
+            <h3>Deals of the Day</h3> <span class="time-span">13:33:51 Left</span>
+        </div>
+    
+        <div class="items">
+            <div class="item-card">
+                <img class="img-item" src="/src/images/Product/01" />
+                <p>Spark,Aadi & More</p>
+                <p>From $199+Extra10%off</p>
+                <p>Causual Shoes For Men's</p>
+            </div>
+            <div class="item-card">
+                <img class="img-item" src="/src/images/Product/02.jpeg" />
+                <p>Spark,Aadi & More</p>
+                <p>From $199+Extra10%off</p>
+                <p>Causual Shoes For Men's</p>
+            </div>
+            <div class="item-card">
+                <img class="img-item" src="/src/images/Product/03jpeg" />
+                <p>Spark,Aadi & More</p>
+                <p>From $199+Extra10%off</p>
+                <p>Causual Shoes For Men's</p>
+            </div>
+            <div class="item-card">
+                <img class="img-item" src="/src/images/Product/04.jpeg" />
+                <p>Spark,Aadi & More</p>
+                <p>From $199+Extra10%off</p>
+                <p>Causual Shoes For Men's</p>
+            </div>
 
-    <!-- Cart Link -->  
-
-      <a class="more-btn flex"><i class="fas fa-shopping-cart"></i> Cart</a>
-
-</div>
-</nav>
-
-<!-- Navigation Bar End -->
-
-
-<!-- Header Section-->
-
-<section class="header-container flex">
-    <div class="card">
-        <img  src="/src/images/f15c02bfeb02d15d.png" alt="" >
-        <div class="product-text">Top Offers</div>
-    </div>
-    <div class="card">
-        <img  src="/src/images/29327f40e9c4d26b.png" alt="" >
-        <div class="product-text" >Grocery</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/22fddf3c7da4c4f4.png" alt="" >
-        <div class="product-text" >Mobiles</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/fashion.png" alt="" >
-        <div class="product-text" >Fashion </div> 
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/laptop.png" alt="" >
-        <div class="product-text" >Electronics</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/Home.jpg" alt="" >
-        <div class="product-text" >Home</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/Appliences.png" alt="" >
-        <div class="product-text" >Appliances</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="src/images/travel.png" alt="" >
-        <div class="product-text" >Travel</div>
-    </div>
-    <div class="card">
-        <img class="img-class" src="/src/images/Toys.png" alt="" >
-        <div class="product-text" >Beauty, Toys & More </div>
-    </div>
-</section>
-
-<!-- Header Section End-->
-
-</header>
-
-<!-- Header End -->
-
+        </div>
+        
+    </main>
+    
 </body>
 </html>
