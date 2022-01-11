@@ -8,9 +8,25 @@ body{
     background-color: rgb(241, 252, 252);
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+}
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.nav-container{
+::-webkit-scrollbar-track {
+    background-color: rgb(212, 229, 233);
+    
+}
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(56, 115, 241, 0.3);
+    border-radius: 50px; 
+}
+
+.navbar-container{
+    padding-top: 15px;
     position: fixed;
     background-color: #2874f0;
     color: #fff;
@@ -39,7 +55,10 @@ ul > li{
     width: 75px;
     margin-bottom: -8px;
 }
-.link{
+
+
+ 
+.link-a{
     display: inline-block;
     text-decoration: none;
     font-size: small;
@@ -53,7 +72,7 @@ ul > li{
     font-weight: 500;
     margin: 0px 2px;
 }
-.link:hover{
+.link-a:hover{
     border-bottom: 1px solid #fff;
 }
 
@@ -83,9 +102,9 @@ ul > li{
 }
 
 .button-style{
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-style li:nth-child(1){
@@ -107,11 +126,8 @@ justify-content: center;
     color: white;
     background-color: transparent;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
 }
-
-
-
-
 .button-style li:nth-child(2){
     font-size: medium;
     position: relative;
@@ -124,7 +140,6 @@ justify-content: center;
     letter-spacing: 1px;
     transition: 0.5s ease-in-out;
 }
-
 .button-style li:nth-child(3){
     font-size: medium;
     position: relative;
@@ -136,44 +151,35 @@ justify-content: center;
     margin-left: 30px;
     letter-spacing: 1px;
     transition: 0.5s ease-in-out;
-
-}
-
-.svg-arrow{
-    width: 15px;
-    height: 15px;
-    align-items: center;
-    margin-top: 5px;
-    color: #fafafa;
 }
 
 /* Navigation CSS END */
 
-
 /* Header CSS */
-
 .header-container{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     padding-top: 60px;
     padding-bottom: 20px;
     padding-left: 30px;
     padding-right: 30px;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
     margin: 0 auto;
+    max-width: 1280px;
 }
-.card{
+.card-category{
         padding: 12px 8px;
         text-align: center;
         cursor: pointer;
         transition: 0.5s ease-in-out;
         transition-property: background-color;
 }
-.card:hover{
+.card-category:hover{
         background-color: #7ea7eb;
+        opacity: 95;
+        
 }
-
 .product-text{
         font-weight: 600;
         font-size: 14px;
@@ -189,22 +195,19 @@ justify-content: center;
 /* Header END CSS */
 
 /* Main Section CSS */
-
 .main-section{
     display: flex;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
     padding: 20px 30px;
     align-items: center;
-    
+    justify-content: space-between;
 }
-
 .main-section h3{
     font-size: 22px;
     line-height: 2rem;
     font-weight: 500;
     
 }
-
 .time-span{
     display: inline-block;
     font-size: 1.5rem;
@@ -213,25 +216,34 @@ justify-content: center;
     color: #aab3ae;
     line-height: 1.5px;
 }
-
 .items{
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    max-width: 1000px;
-    width: 100%;
+    max-width: 1280px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 15px;
+    overflow-y: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+}
+.item-card{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;   
 }
 
-.item-card{
- display: flex;
-   flex-direction: column;
-   padding: 10px 20px;
-   margin: 5px;
-   align-items: center;
-   justify-content: center;
+.item-card:hover{
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
 }
+   
+
 .item-card p{
     text-align: center;
     font-size: 1.2rem;
@@ -239,34 +251,55 @@ justify-content: center;
 }
 
 .item-card p:nth-child(2){
-    padding-bottom: 5px;
+    color:#020502 ;
+    padding-top: 5px;
+    margin: 0;
     font-size: 1rem;
-    font-weight: 100;
-    line-height: 2px;
+    font-weight: 400;
     letter-spacing: 1px;
     font-weight: 500;
 }
-
 .item-card p:nth-child(3){
     color:#388e3c ;
     padding-top: 5px;
     font-size: 1rem;
-    
+    margin: 0;
 }
-
 .item-card p:nth-child(4){
     color:#998686 ;
     padding-top: 5px;
     font-size: 1.05rem;
+    margin: 0;
 }
-
 .item-card img{
     display: inline-block;
     margin-bottom: 10px;
     cursor: pointer;
 }
-
+.view-more{
+    font-size:  13px;
+    margin-right: 40px;
+    left: 90px;
+    padding: 10px 20px;
+    color: #e6ecf7 ;
+    background-color: #2874f0;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    transition: .3s ease;
+    transition-property:background-color,color ;
+    outline: none;
+    border:none;
+}
+.view-more:hover{
+    background-color: #388e3c;
+}
 /* Main Section CSS END */
+
+.fa-clock{
+    color: #aab3ae;
+}
 
 
 
