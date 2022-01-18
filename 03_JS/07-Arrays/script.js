@@ -137,14 +137,3 @@ const fruits=['Apple','Mango','Banana']
 
 //Array Every => Return true if only every element passes the test
 // console.log(array.every((el) => el > 3))
-
-
-
-
-
-
-
-
-
-
-
