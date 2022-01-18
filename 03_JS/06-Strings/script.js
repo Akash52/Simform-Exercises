@@ -61,7 +61,7 @@
 
 // console.log(exampleString.trim())
 
-//Sting Exercise
+//String Exercise
 
 // const guestList = 'Our guest are: emma, jacob , isabell, ethan'
 // console.log(guestList.length)
