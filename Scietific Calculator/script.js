@@ -1,8 +1,22 @@
 let display = document.getElementById("screen");
+let subDisplay = document.getElementById("sub_display");
 let buttons = document.getElementsByClassName("btn");
-let functionButtons = document.getElementById("funBtn");
-// console.log(functionButtons)
-// console.log(display);
+const btnMC = document.querySelector("#mc");
+const btnMR = document.querySelector("#mr");
+let lightTheme = "/style.css";
+let darkTheme = "/dark.css";
+
+function changeTheme() {
+  let darkMode = document.getElementById("dark-mode");
+  let theme = document.getElementById("theme");
+  if (theme.getAttribute("href") == lightTheme) {
+    theme.href = darkTheme;
+    darkMode.innerHTML = "☀️";
+  } else {
+    theme.href = lightTheme;
+    darkMode.innerHTML = "🌙";
+  }
+}
 
 Array.prototype.forEach.call(buttons, function (button) {
   button.addEventListener("click", function () {
@@ -35,19 +49,23 @@ Array.prototype.forEach.call(buttons, function (button) {
       button.textContent != "1/x" &&
       button.textContent != "xy" &&
       button.textContent != "|x|" &&
-      button.textContent != "FE" && 
+      button.textContent != "FE" &&
       button.textContent != "⌊x⌋" &&
       button.textContent != "⌈x⌉" &&
       button.textContent != "RAN" &&
-      button.textContent != "∘" &&
       button.textContent != "MC" &&
       button.textContent != "MR" &&
       button.textContent != "M+" &&
       button.textContent != "M-" &&
-      button.textContent != "MS"
+      button.textContent != "MS" &&
+      button.textContent != "ex" &&
+      button.textContent != "2x" &&
+      button.textContent != "y√x" &&
+      button.textContent != "∛x" &&
+      button.textContent != "x3" 
 
     ) {
-      display.value += button.textContent;
+      display.value = display.value + button.textContent;
     } else if (button.textContent === "=") {
       equals();
     } else if (button.textContent === "C") {
@@ -90,10 +108,6 @@ Array.prototype.forEach.call(buttons, function (button) {
       factorial();
     } else if (button.textContent === "e") {
       exp();
-    } else if (button.textContent === "rad") {
-      radians();
-    } else if (button.textContent === "∘") {
-      degrees();
     } else if (button.textContent === "10x") {
       tenpowexp();
     } else if (button.textContent === "1/x") {
@@ -104,37 +118,39 @@ Array.prototype.forEach.call(buttons, function (button) {
       absvalue();
     } else if (button.textContent === "FE") {
       fevalue();
-    } else if (button.textContent === "DEG") {
-      degToRad();
-    }
-    else if (button.textContent === "2nd") {
-      twopowexp();
     }else if (button.textContent === "⌊x⌋") {
       floor();
-    }else if(button.textContent === "⌈x⌉"){
+    } else if (button.textContent === "⌈x⌉") {
       ceil();
-    }else if(button.textContent === "RAN"){
+    } else if (button.textContent === "RAN") {
       random();
-    }else if(button.textContent === "MC"){
+    } else if(button.textContent === "ex"){
+      epowerx();
+    }
+    else if(button.textContent === "2x"){
+      twopowerx();
+    }
+    else if(button.textContent === "y√x"){
+      yrootx();
+    }
+    else if(button.textContent === "∛x"){
+      cubeRoot();
+    }else if(button.textContent === "x3"){
+      cube();
+    }
+     else if (button.textContent === "MC") {
       memoryClear();
-    }else if(button.textContent === "MR"){
+    } else if (button.textContent === "MR") {
       memoryRecall();
-    }
-    else if(button.textContent === "M+"){
+    } else if (button.textContent === "M+") {
       memoryAdd();
-    }
-    else if(button.textContent === "M-"){
+    } else if (button.textContent === "M-") {
       memorySubtract();
-    }
-    else if(button.textContent === "MS"){
+    } else if (button.textContent === "MS") {
       memoryStore();
-    }
+    } 
   });
 });
-
-//We create different functions for each button
-
-//Here we handle edge cases
 
 function syntaxError() {
   if (
@@ -152,8 +168,6 @@ function checkLength() {
   }
 }
 
-//For Equals button
-
 function equals() {
   if (display.value.indexOf("^") > -1) {
     let base = display.value.slice(0, display.value.indexOf("^"));
@@ -161,24 +175,26 @@ function equals() {
     display.value = eval("Math.pow(" + base + "," + exponent + ")");
   } else {
     display.value = eval(display.value);
+    subDisplay.value = display.value;
     checkLength();
     syntaxError();
   }
 }
 
-//Simple clear button
-
 function clear() {
   display.value = "";
+  subDisplay.value = display.value;
 }
-
-//Backspace
 
 function backspace() {
-  display.value = display.value.substring(0, display.value.length - 1);
+  if(display.value.length > 0){
+    display.value = display.value.slice(0, display.value.length - 1);
+    subDisplay.value = display.value;
+  }else{
+    display.value = "";
+    subDisplay.value = display.value;
+  }
 }
-
-//Here we perform basic math operations like addition, subtraction, multiplication, division
 
 function multiply() {
   display.value += "*";
@@ -196,47 +212,30 @@ function plusMinus() {
   }
 }
 
-//Here we find factorial
-
 function factorial() {
-  if (display.value === 0) {
-    display.value = "1";
-  } else if (display.value < 0) {
-    display.value = "undefined";
-  } else {
-    let number = 1;
-    for (let i = display.value; i > 0; i--) {
-      number *= i;
-    }
-    display.value = number;
+  let fact = 1;
+  value = display.value;
+  for (let i = 1; i <= value; i++) {
+    fact = fact * i;
+    display.value = fact;
   }
 }
-
-//For PI
 
 function pi() {
   display.value = display.value * Math.PI;
 }
 
-//For Square
-
 function square() {
   display.value = eval(display.value * display.value);
 }
-//For SquareRoot
+
 function squareRoot() {
   display.value = Math.sqrt(display.value);
 }
-//For Percent
-function percent() {
-  display.value = display.value / 100;
-}
 
-function mode() {
+function percent() {
   display.value = display.value % display.value;
 }
-
-//here we perform Trigonometry Operations
 
 function sin() {
   display.value = Math.sin(display.value);
@@ -244,6 +243,7 @@ function sin() {
 
 function cos() {
   display.value = Math.cos(display.value);
+  subDisplay += display.value;
 }
 
 function tan() {
@@ -262,18 +262,13 @@ function atan() {
   display.value = Math.atan(display.value);
 }
 
-//For Log10
-
 function log() {
   display.value = Math.log10(display.value);
 }
 
-//For Log
-
 function ln() {
   display.value = Math.log(display.value);
 }
-//For Exponent
 
 function exponent() {
   display.value += "^";
@@ -285,10 +280,6 @@ function exp() {
 
 function tenpowexp() {
   display.value = Math.pow(10, display.value);
-}
-
-function twopowexp() {
-  display.value = Math.pow(2, display.value);
 }
 
 function power() {
@@ -324,6 +315,30 @@ function absvalue() {
   display.value = Math.abs(display.value);
 }
 
+function epowerx(){
+  display.value = Math.pow(Math.E,display.value);
+}
+
+function twopowerx(){
+  display.value = Math.pow(2,display.value);
+}
+
+function cubeRoot(){
+  display.value = Math.cbrt(display.value);
+}
+
+function yrootx() { 
+  let dvalue,a,b;
+  dvalue = display.value;
+  a = dvalue.slice(0,dvalue.indexOf("y")); 
+  b = dvalue.slice(dvalue.indexOf("t") + 1);
+  return Math.pow(a,1/b);
+}
+
+function cube(){
+  display.value = Math.pow(display.value,3);
+}
+
 function degtorad() {
   if ($(".degrees").text() == "DEG") {
     display.value = display.value * (180 / Math.PI);
@@ -336,27 +351,58 @@ function degtorad() {
 
 //Memory functions
 
-let memory = 0;
+let memory = [];
 
 function memoryAdd() {
-  memory = memory + parseFloat(display.value);
+  memory.push(display.value);
+  subDisplay.value = `M+(${display.value})`;
+  btnMR.style.color = "black";
+  btnMC.style.color = "black";
+  btnMR.style.backgroundColor = "white";
+  btnMC.style.backgroundColor = "white";
 }
 
 function memorySubtract() {
-  memory = memory - parseFloat(display.value);
+  memory.push(eval(-display.value));
+  subDisplay.value = `M-(${display.value})`;
+  btnMR.style.color = "black";
+  btnMC.style.color = "black";
+  btnMR.style.backgroundColor = "white";
+  btnMC.style.backgroundColor = "white";
 }
 
 function memoryRecall() {
-  display.value = memory;
+  let result = memory.reduce(function (acc, cur) {
+    return acc + cur;
+  }, 0);
+  display.value = result;
+  subDisplay = display.value;
 }
 
 function memoryStore() {
-  memory = parseFloat(display.value);
+  if (memory.length === 0) alert("Empyt Memory");
+  else {
+    display.value = memory[i];
+    i++;
+    if (i === memory.length) {
+      i = 0;
+    }
+  }
 }
 function memoryClear() {
-  memory = 0;
+  memory = [];
+  display.value = "";
+  subDisplay.value = "";
+  btnMR.style.color = "grey";
+  btnMC.style.color = "grey";
 }
 
-//Scientific Functions in Javascript
+window.onload = () => {
+  'use strict';
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+}
+
 
 
