@@ -3,20 +3,6 @@ let subDisplay = document.getElementById("sub_display");
 let buttons = document.getElementsByClassName("btn");
 const btnMC = document.querySelector("#mc");
 const btnMR = document.querySelector("#mr");
-let lightTheme = "/style.css";
-let darkTheme = "/dark.css";
-
-function changeTheme() {
-  let darkMode = document.getElementById("dark-mode");
-  let theme = document.getElementById("theme");
-  if (theme.getAttribute("href") == lightTheme) {
-    theme.href = darkTheme;
-    darkMode.innerHTML = "☀️";
-  } else {
-    theme.href = lightTheme;
-    darkMode.innerHTML = "🌙";
-  }
-}
 
 Array.prototype.forEach.call(buttons, function (button) {
   button.addEventListener("click", function () {
@@ -395,13 +381,6 @@ function memoryClear() {
   subDisplay.value = "";
   btnMR.style.color = "grey";
   btnMC.style.color = "grey";
-}
-
-window.onload = () => {
-  'use strict';
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
-  }
 }
 
 
