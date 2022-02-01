@@ -1,7 +1,7 @@
 const display = <HTMLInputElement>document.getElementById("screen");
 const subDisplay = <HTMLInputElement>document.getElementById("sub_display");
 const buttons = document.getElementsByClassName("btn");
-const resultDisplayed = false;
+let resultDisplayed = false;
 
 Array.prototype.forEach.call(
   buttons,
@@ -39,7 +39,7 @@ Array.prototype.forEach.call(
         button.textContent != "1/x" &&
         button.textContent != "xy" &&
         button.textContent != "|x|" &&
-        button.textContent != "FE" &&
+        button.textContent != "F-E" &&
         button.textContent != "⌊x⌋" &&
         button.textContent != "⌈x⌉" &&
         button.textContent != "RAN" &&
@@ -50,10 +50,12 @@ Array.prototype.forEach.call(
         button.textContent != "MS" &&
         button.textContent != "ex" &&
         button.textContent != "2x" &&
-        button.textContent != "y√x" &&
+        button.textContent != "3x" &&
         button.textContent != "∛x" &&
         button.textContent != "/" &&
-        button.textContent != "x3"
+        button.textContent != "x3" &&
+        button.textContent != "+" &&
+        button.textContent != "-"
       ) {
         display.value += button.textContent;
       } else if (button.textContent === "=") {
@@ -62,6 +64,10 @@ Array.prototype.forEach.call(
         clear();
       } else if (button.textContent === "×") {
         multiply();
+      } else if (button.textContent === "+") {
+        add();
+      } else if (button.textContent === "-") {
+        minus();
       } else if (button.textContent === "÷") {
         divide();
       } else if (button.textContent === "±") {
@@ -74,11 +80,9 @@ Array.prototype.forEach.call(
         pi();
       } else if (button.textContent === "x ²") {
         square();
-      }
-      else if (button.textContent === '√') {
-      squareRoot()
-      }
-      else if (button.textContent === "sin") {
+      } else if (button.textContent === "√") {
+        squareRoot();
+      } else if (button.textContent === "sin") {
         sin();
       } else if (button.textContent === "cos") {
         cos();
@@ -95,7 +99,7 @@ Array.prototype.forEach.call(
       } else if (button.textContent === "In") {
         ln();
       } else if (button.textContent === "exp") {
-        exponent();
+        expression();
       } else if (button.textContent === "n!") {
         factorial();
       } else if (button.textContent === "e") {
@@ -108,7 +112,7 @@ Array.prototype.forEach.call(
         power();
       } else if (button.textContent === "|x|") {
         absvalue();
-      } else if (button.textContent === "FE") {
+      } else if (button.textContent === "F-E") {
         fevalue();
       } else if (button.textContent === "⌊x⌋") {
         floor();
@@ -120,14 +124,11 @@ Array.prototype.forEach.call(
         epowerx();
       } else if (button.textContent === "2x") {
         twopowerx();
-      } else if (button.textContent === "y√x") {
-        yrootx();
-      }
-      // else if (button.textContent === '∛x') {
-      //   cubeRoot()
-
-      // }
-      else if (button.textContent === "x3") {
+      } else if (button.textContent === "3x") {
+        threepowerx();
+      } else if (button.textContent === "∛x") {
+        cubeRoot();
+      } else if (button.textContent === "x3") {
         cube();
       } else if (button.textContent === "MC") {
         memoryClear();
@@ -144,22 +145,54 @@ Array.prototype.forEach.call(
   }
 );
 
-function syntaxError() {
-  if (
-    eval(display.value) == SyntaxError ||
-    eval(display.value) == ReferenceError ||
-    eval(display.value) == TypeError
-  ) {
-    display.value == "Syntax Error";
+function equals() {
+  if (display.value.indexOf("^") > -1) {
+    let base = display.value.slice(0, display.value.indexOf("^"));
+    let exponent = display.value.slice(display.value.indexOf("^") + 1);
+    display.value = eval("Math.pow(" + base + "," + exponent + ")");
+  } else if (display.value === "" || display.value === undefined) {
+    clear();
+  } else {
+    try {
+      let x = eval(display.value);
+      display.value = eval(x);
+      subDisplay.value = display.value;
+    } catch {
+      display.value = "Syntax error!";
+    }
   }
 }
 
-const check = (val: any) => {
+function clear() {
+  display.value = "";
+  subDisplay.value = display.value;
+}
+
+function backspace() {
+  if (display.value.length > 0) {
+    display.value = display.value.slice(0, display.value.length - 1);
+    subDisplay.value = display.value;
+  }
+}
+
+const check = (val: string, eve: string) => {
   let isvalid: boolean;
-  let char_list: any = ["+", "-", "/", "*", "%", "!", "^", "π", "e", "|x|"];
-  let last_char: any = val.charAt(val.length - 1);
+  let cur_Value = display.value;
+  let last_char: string = cur_Value[cur_Value.length - 1];
   if (display.value !== "0" && display.value !== "") {
-    if (char_list.includes(last_char)) {
+    if (
+      last_char === "+" ||
+      last_char === "-" ||
+      last_char === "/" ||
+      last_char === "*" ||
+      last_char === "%" ||
+      last_char === "!" ||
+      last_char === "^" ||
+      last_char === "e" ||
+      last_char === "e"
+    ) {
+      let assign = cur_Value.substring(0, cur_Value.length - 1) + eve;
+      display.value = assign;
       isvalid = false;
     } else {
       isvalid = true;
@@ -168,44 +201,26 @@ const check = (val: any) => {
   }
 };
 
-function checkLength() {
-  if (display.value.length > 15) {
-    display.value = "Overflow";
-  }
-}
-
-function equals() {
-  if (display.value.indexOf("^") > -1) {
-    let base = display.value.slice(0, display.value.indexOf("^"));
-    let exponent = display.value.slice(display.value.indexOf("^") + 1);
-    display.value = eval("Math.pow(" + base + "," + exponent + ")");
-  } else {
-    display.value = eval(display.value);
-    subDisplay.value = display.value;
-    syntaxError();
-  }
-}
-
-function clear() {
-  display.value = "";
-  subDisplay.value = display.value
-}
-
-function backspace() {
-  if (display.value.length > 0) {
-    display.value = display.value.slice(0, display.value.length - 1);
-  }
-}
-
 function multiply() {
-  if (display.value !== "0" && display.value !== "") {
+  if (check(display.value, "*")) {
     display.value += "*";
   }
 }
 
 function divide() {
-  if (check(display.value)) {
+  if (check(display.value, "/")) {
     display.value += "/";
+  }
+}
+
+function add() {
+  if (check(display.value, "+")) {
+    display.value += "+";
+  }
+}
+function minus() {
+  if (check(display.value, "-") === true) {
+    display.value += "-";
   }
 }
 
@@ -255,7 +270,7 @@ function atan() {
   display.value = String(Math.atan(Number(display.value)));
 }
 function log() {
-  display.value = String(Math.pow(10, Number(display.value)));
+  display.value = String(Math.LOG10E);
 }
 function ln() {
   display.value = String(Math.log(Number(display.value)));
@@ -298,21 +313,23 @@ function epowerx() {
 function twopowerx() {
   display.value = String(Math.pow(2, Number(display.value)));
 }
-// function cubeRoot() {
-//   display.value = String(Math.cbrt(Number(display.value)));
-// }
-function yrootx() {
-  let dvalue: string | string[],
-    a: string | number | string[],
-    b: string | number | string[];
-  dvalue = display.value;
-  a = Number(dvalue.slice(0, dvalue.indexOf("y")));
-  b = Number(dvalue.slice(dvalue.indexOf("t") + 1));
-  return Math.pow(a, 1 / b);
+
+function threepowerx() {
+  display.value = String(Math.pow(3, Number(display.value)));
 }
+
 function cube() {
   display.value = String(Math.pow(Number(display.value), 3));
 }
+
+function cubeRoot() {
+  display.value = String(Math.pow(Number(display.value), 1 / 3));
+}
+
+function expression() {
+  display.value = String(eval(display.value));
+}
+
 function degtorad() {
   if ($(".degrees").text() == "DEG") {
     display.value = String((Math.PI * Number(display.value)) / 180);
@@ -322,34 +339,41 @@ function degtorad() {
     $(".degrees").text("DEG");
   }
 }
+
 //Memory functions
-let memory = [];
+
+let memory: any = [];
+
+let data: any = 0;
+
 function memoryAdd() {
   memory.push(display.value);
   subDisplay.value = `M+(${display.value})`;
 }
+
 function memorySubtract() {
-  memory.push(display.value);
+  memory.push(eval("-" + data));
+  display.value = data;
+  subDisplay.value = `M-(${display.value})`;
 }
+
 function memoryRecall() {
-  let result = memory.reduce(function (acc, cur) {
-    return acc + cur;
-  }, 0);
-  display.value = result;
+  let num = 0;
+  memory.forEach((data: any) => {
+    num += data;
+  });
+  display.value = String(num);
+  subDisplay.value = `MR(${display.value})`;
 }
+
 function memoryStore() {
-  let i: number = 0;
-  if (memory.length === 0) alert("Empyt Memory");
-  else {
-    display.value = memory[i];
-    i++;
-    if (i === memory.length) {
-      i = 0;
-    }
-  }
+  memory.push(data);
+  display.value = memory;
+  subDisplay.value = `MS(${display.value})`;
 }
+
 function memoryClear() {
   memory = [];
-  display.value = "";
-  subDisplay.value = "";
+  display.value = String(memory);
+  subDisplay.value = `MC`;
 }

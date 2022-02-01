@@ -1,7 +1,7 @@
-var display = document.getElementById("screen");
-var subDisplay = document.getElementById("sub_display");
-var buttons = document.getElementsByClassName("btn");
-var resultDisplayed = false;
+const display = document.getElementById("screen");
+const subDisplay = document.getElementById("sub_display");
+const buttons = document.getElementsByClassName("btn");
+let resultDisplayed = false;
 Array.prototype.forEach.call(buttons, function (button) {
     button.addEventListener("click", function () {
         if (button.textContent != "=" &&
@@ -32,7 +32,7 @@ Array.prototype.forEach.call(buttons, function (button) {
             button.textContent != "1/x" &&
             button.textContent != "xy" &&
             button.textContent != "|x|" &&
-            button.textContent != "F-E" &&
+            button.textContent != "FE" &&
             button.textContent != "⌊x⌋" &&
             button.textContent != "⌈x⌉" &&
             button.textContent != "RAN" &&
@@ -132,7 +132,7 @@ Array.prototype.forEach.call(buttons, function (button) {
         else if (button.textContent === "|x|") {
             absvalue();
         }
-        else if (button.textContent === "F-E") {
+        else if (button.textContent === "FE") {
             fevalue();
         }
         else if (button.textContent === "⌊x⌋") {
@@ -178,16 +178,16 @@ Array.prototype.forEach.call(buttons, function (button) {
 });
 function equals() {
     if (display.value.indexOf("^") > -1) {
-        var base = display.value.slice(0, display.value.indexOf("^"));
-        var exponent_1 = display.value.slice(display.value.indexOf("^") + 1);
-        display.value = eval("Math.pow(" + base + "," + exponent_1 + ")");
+        let base = display.value.slice(0, display.value.indexOf("^"));
+        let exponent = display.value.slice(display.value.indexOf("^") + 1);
+        display.value = eval("Math.pow(" + base + "," + exponent + ")");
     }
     else if (display.value === "" || display.value === undefined) {
         clear();
     }
     else {
         try {
-            var x = eval(display.value);
+            let x = eval(display.value);
             display.value = eval(x);
             subDisplay.value = display.value;
         }
@@ -206,10 +206,10 @@ function backspace() {
         subDisplay.value = display.value;
     }
 }
-var check = function (val, eve) {
-    var isvalid;
-    var cur_Value = display.value;
-    var last_char = cur_Value[cur_Value.length - 1];
+const check = (val, eve) => {
+    let isvalid;
+    let cur_Value = display.value;
+    let last_char = cur_Value[cur_Value.length - 1];
     if (display.value !== "0" && display.value !== "") {
         if (last_char === "+" ||
             last_char === "-" ||
@@ -220,7 +220,7 @@ var check = function (val, eve) {
             last_char === "^" ||
             last_char === "e" ||
             last_char === "e") {
-            var assign = cur_Value.substring(0, cur_Value.length - 1) + eve;
+            let assign = cur_Value.substring(0, cur_Value.length - 1) + eve;
             display.value = assign;
             isvalid = false;
         }
@@ -259,9 +259,9 @@ function plusMinus() {
     }
 }
 function factorial() {
-    var fact = 1;
-    var value = Number(display.value);
-    for (var i = 1; i <= value; i++) {
+    let fact = 1;
+    const value = Number(display.value);
+    for (let i = 1; i <= value; i++) {
         fact = fact * i;
         display.value = String(fact);
     }
@@ -322,7 +322,7 @@ function absvalue() {
     display.value = String(Math.abs(Number(display.value)));
 }
 function fevalue() {
-    var num = Number(display.value);
+    let num = Number(display.value);
     display.value = num.toExponential();
 }
 function floor() {
@@ -363,32 +363,32 @@ function degtorad() {
     }
 }
 //Memory functions
-var memory = [];
-var data = 0;
+let memory = [];
+let data = 0;
 function memoryAdd() {
     memory.push(display.value);
-    subDisplay.value = "M+(".concat(display.value, ")");
+    subDisplay.value = `M+(${display.value})`;
 }
 function memorySubtract() {
     memory.push(eval("-" + data));
     display.value = data;
-    subDisplay.value = "M-(".concat(display.value, ")");
+    subDisplay.value = `M-(${display.value})`;
 }
 function memoryRecall() {
-    var num = 0;
-    memory.forEach(function (data) {
+    let num = 0;
+    memory.forEach((data) => {
         num += data;
     });
     display.value = String(num);
-    subDisplay.value = "MR(".concat(display.value, ")");
+    subDisplay.value = `MR(${display.value})`;
 }
 function memoryStore() {
     memory.push(data);
     display.value = memory;
-    subDisplay.value = "MS(".concat(display.value, ")");
+    subDisplay.value = `MS(${display.value})`;
 }
 function memoryClear() {
     memory = [];
     display.value = String(memory);
-    subDisplay.value = "MC";
+    subDisplay.value = `MC`;
 }
