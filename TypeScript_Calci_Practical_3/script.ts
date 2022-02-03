@@ -145,12 +145,12 @@ Array.prototype.forEach.call(
   }
 );
 
-function equals() {
+function equals():void {
   if (display.value.indexOf("^") > -1) {
     let base = display.value.slice(0, display.value.indexOf("^"));
     let exponent = display.value.slice(display.value.indexOf("^") + 1);
-    display.value = eval("Math.pow(" + base + "," + exponent + ")");
   } else if (display.value === "" || display.value === undefined) {
+    display.value = eval("Math.pow(" + base + "," + exponent + ")");
     clear();
   } else {
     try {
@@ -163,12 +163,12 @@ function equals() {
   }
 }
 
-function clear() {
+function clear():void {
   display.value = "";
   subDisplay.value = display.value;
 }
 
-function backspace() {
+function backspace():void {
   if (display.value.length > 0) {
     display.value = display.value.slice(0, display.value.length - 1);
     subDisplay.value = display.value;
@@ -201,37 +201,37 @@ const check = (val: string, eve: string) => {
   }
 };
 
-function multiply() {
+function multiply():void {
   if (check(display.value, "*")) {
     display.value += "*";
   }
 }
 
-function divide() {
+function divide():void {
   if (check(display.value, "/")) {
     display.value += "/";
   }
 }
 
-function add() {
+function add():void {
   if (check(display.value, "+")) {
     display.value += "+";
   }
 }
-function minus() {
+function minus():void {
   if (check(display.value, "-") === true) {
     display.value += "-";
   }
 }
 
-function plusMinus() {
+function plusMinus():void {
   if (display.value.charAt(0) === "-") {
     display.value = display.value.slice(1);
   } else {
     display.value = "-" + display.value;
   }
 }
-function factorial() {
+function factorial():void {
   let fact = 1;
   const value = Number(display.value);
   for (let i = 1; i <= value; i++) {
@@ -239,98 +239,98 @@ function factorial() {
     display.value = String(fact);
   }
 }
-function pi() {
+function pi():void {
   display.value = String(Number(display.value) * Math.PI);
 }
-function square() {
+function square():void {
   display.value = String(Math.pow(Number(display.value), 2));
 }
-function squareRoot() {
+function squareRoot():void {
   display.value = String(Math.sqrt(Number(display.value)));
 }
-function percent() {
+function percent():void {
   display.value = String(Number(display.value) / 100);
 }
-function sin() {
+function sin():void {
   display.value = String(Math.sin(Number(display.value)));
 }
-function cos() {
+function cos():void {
   display.value = String(Math.cos(Number(display.value)));
 }
-function tan() {
+function tan():void {
   display.value = String(Math.tan(Number(display.value)));
 }
-function asin() {
+function asin() :void{
   display.value = String(Math.asin(Number(display.value)));
 }
-function acos() {
+function acos():void {
   display.value = String(Math.acos(Number(display.value)));
 }
-function atan() {
+function atan():void {
   display.value = String(Math.atan(Number(display.value)));
 }
-function log() {
+function log():void {
   display.value = String(Math.LOG10E);
 }
-function ln() {
+function ln():void {
   display.value = String(Math.log(Number(display.value)));
 }
-function exponent() {
+function exponent():void {
   display.value = String(Math.pow(Number(display.value), 2));
   display.value += "^";
 }
-function exp() {
+function exp():void {
   display.value = String(Math.exp(Number(display.value)));
 }
-function tenpowexp() {
+function tenpowexp():void {
   display.value = String(Math.pow(10, Number(display.value)));
 }
-function power() {
+function power():void {
   display.value += "^";
 }
-function fraction() {
+function fraction():void {
   display.value = (1 / Number(display.value)).toFixed(2);
 }
-function absvalue() {
+function absvalue():void {
   display.value = String(Math.abs(Number(display.value)));
 }
-function fevalue() {
+function fevalue() :void{
   let num = Number(display.value);
   display.value = num.toExponential();
 }
-function floor() {
+function floor():void {
   display.value = String(Math.floor(Number(display.value)));
 }
-function ceil() {
+function ceil():void {
   display.value = String(Math.ceil(Number(display.value)));
 }
-function random() {
+function random() :void{
   display.value = String(Math.random());
 }
-function epowerx() {
+function epowerx() :void{
   display.value = String(Math.exp(Number(display.value)));
 }
-function twopowerx() {
+function twopowerx() :void{
   display.value = String(Math.pow(2, Number(display.value)));
 }
 
-function threepowerx() {
+function threepowerx():void {
   display.value = String(Math.pow(3, Number(display.value)));
 }
 
-function cube() {
+function cube():void {
   display.value = String(Math.pow(Number(display.value), 3));
 }
 
-function cubeRoot() {
+function cubeRoot() :void{
   display.value = String(Math.pow(Number(display.value), 1 / 3));
 }
 
-function expression() {
+function expression():void {
   display.value = String(eval(display.value));
 }
 
-function degtorad() {
+function degtorad():void {
   if ($(".degrees").text() == "DEG") {
     display.value = String((Math.PI * Number(display.value)) / 180);
     $(".degrees").text("RAD");
@@ -342,37 +342,37 @@ function degtorad() {
 
 //Memory functions
 
-let memory: any = [];
+let memory = [];
 
-let data: any = 0;
+let data: Number = 0;
 
-function memoryAdd() {
+function memoryAdd():void {
   memory.push(display.value);
   subDisplay.value = `M+(${display.value})`;
 }
 
-function memorySubtract() {
+function memorySubtract():void {
   memory.push(eval("-" + data));
-  display.value = data;
+  display.value = String(data);
   subDisplay.value = `M-(${display.value})`;
 }
 
-function memoryRecall() {
+function memoryRecall():void {
   let num = 0;
-  memory.forEach((data: any) => {
+  memory.forEach((data) => {
     num += data;
   });
   display.value = String(num);
   subDisplay.value = `MR(${display.value})`;
 }
 
-function memoryStore() {
+function memoryStore():void {
   memory.push(data);
-  display.value = memory;
+  display.value = String(memory);
   subDisplay.value = `MS(${display.value})`;
 }
 
-function memoryClear() {
+function memoryClear():void {
   memory = [];
   display.value = String(memory);
   subDisplay.value = `MC`;
