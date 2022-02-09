@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Video</h3>
+    <video id="vid" width="320" height="240" preload="auto" poster="https://media.istockphoto.com/photos/idyllic-meadow-picture-id1294119130?b=1&k=20&m=1294119130&s=170667a&w=0&h=m5wkjCxw_Ra-bqPN6NfSpSJ-DaFuASJ9Sl5kscaxCRQ=" controls loop>
+                <source src="src/flower.webm"
+                type="video/webm">
+    </video>
+
+    <span id="remainningTime" >0:00</span>
+    <span id="totalTime">0:00</span>
+
+    <div>
+        <button id="playPause">Play</button>
+        <button id="begin">&lt;&lt;</button>
+        <button id="rewind">&lt;</button>
+        <button id="fastForward">&gt;</button>
+        <button id="end">&gt;&gt;</button>
+        <button id="stop">Stop</button>
+    </div>
+    <label for="volume">Volume</label>
+    <input type="range" id="volume" min="0" max="1" step="0.1" title="Volume">
+    <button id="mute">Mute</button> 
+    <label for="scrubber">Scrubber</label>
+    <input type="range" id="scrubber" min="0" max="14" value="0" step="1">
+    <br>
+    <label for="playpackRate"">PlaypackRate</label>
+    <input type="range" id="playpackRate" min="1" value="1" step="1" max="4" title="Playback Speed"
+
+    <h3>Audio</h3>
+
+    <audio
+        controls
+        src="src/t-rex-roar.mp3">
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- HTML 5 NEW ELEMENT -->
+
+
+    <!-- COLOR -->
+    <input type="color" />
+    <!-- DATA LIST -->
+    <input list="colors" />
+    <datalist id="colors">
+        <option value="Red">
+        <option value="Green">
+        <option value="Pink">
+    </datalist>
+
+    <!-- DATE PICKER -->
+    <input type="datetime-local" />
+    <!-- TIME -->
+    <input type="time" />
+
+    <!-- Empact on mobile Devices -->
+
+    <!-- EMAIL -->
+    <input type="email" />
+    <!-- PHONE -->
+    <input type="tel" />
+    <!-- URL -->
+    <input type="url" />
+    <input type="number" />
+    <input type="search" />
+    <!-- RANGE -->
+    <input type="range" />
+
+    <!-- Native Validation -->
+
+    <!-- Value Missing -->
+    <input type="text"  value=" " required />
+    <!-- Type Mismatch -->
+    <input type="url" value="hi" />
+    <!-- Pattern Mismatch -->
+    <input type="text" pattern="/^[A-z]+$/" value="1234" />
+    <!-- TooLong -->
+    <input type="text" max="3" value="hello" />
+    <!-- Range Underflow -->
+    <input type="range" min="3" max="5" 
+    value="0" />
+    <!-- Range Overflow -->
+    <input type="text" min="3" max="5" value="9" />
+    <!-- Step Mismatch -->
+    <input type="range" min="0" max="20" step="5" value="8" />
+    <script src="script.js"></script>
+</body>
+</html>

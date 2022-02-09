@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <form class="narrow">
+
+        <h2 class="h2">Search</h2>
+        <input type="search"
+        id="search-text"
+        placeholder="Search"
+        class="form-control"
+        required
+        autofocus
+        />
+   
+        <h2 class="h2">Contact Info</h2>
+
+        <input type="text"
+        id="name-text"
+        placeholder="First & Last Name"
+        pattern="(.*)\s(.*)"
+        class="form-control"
+        required />
+
+        <input type="email"
+        id="email-text"
+        placeholder="Email address"
+        class="form-control"
+        required />
+
+        <input type="tel"
+        id="phone-text"
+        placeholder="Phone Number"
+        class="form-control"
+        required />
+
+        <input type="url"
+        id="url-text"
+        placeholder="Web URL"
+        class="form-control"
+        required />
+
+        <h2>preferences</h2>
+        <input type="number"
+        placeholder="# of bedrooms"
+        min="1"
+        max="6"
+        class="form-control" />
+
+        <h2>Days Until Available to Move</h2>
+
+        <input type="range"
+        placeholder="# of bedrooms"
+        min="0"
+        max="120"
+        step="10"
+        value="30"
+        id="move-range"
+        class="form-control" >
+
+        <span id='move-value'>30</span>
+
+        <input type="text"
+        id="direction-list"
+        list="direction-data"
+        placeholder="direction prference"
+        class="form-control"
+        >
+
+        <datalist id="direction-data">
+            <option value="North">
+            <option value="South">
+            <option value="East">
+            <option value="West">
+        </datalist>
+
+        <input type="color"
+        id="main-color"
+        value="#ffffff"
+        class="form-control" >
+
+
+        <h2>Available Date</h2>
+
+        <input type="month"
+        class="form-control"
+        value="2022-01" />
+
+        <input type="week"
+        class="form-control"
+        value="2022-W26" />
+
+        <input type="datetime-local"
+        class="form-control"
+        value="2022-01-16T16:54:00" />
+
+        <div>
+            <button class="btn">Cancle</button>
+            <input type="submit" class="btn-submit" value="Save" />
+        </div>
+
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
